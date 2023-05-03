@@ -1,6 +1,7 @@
 import express, {Application} from 'express';
 import { initRoutes } from './api/routes';
 import logger from 'morgan';
+import { AppDataSource } from './config/database/mysql-datasource.config';
 
 export class App{
     private app: Application;
@@ -30,6 +31,7 @@ export class App{
 
     private async database(): Promise<void>{
         //configuração da conexão com o banco de dados
+        await AppDataSource.initialize();
     } 
 
     public start():void{
